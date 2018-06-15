@@ -6,6 +6,8 @@ namespace BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class RangeType extends AbstractType
@@ -18,9 +20,24 @@ final class RangeType extends AbstractType
         $builder->add('toValue', null, [
             'label' => 'behappy_shipping_range_rate.form.to_value.label',
         ]);
-        $builder->add('amount', null, [
-            'label' => 'behappy_shipping_range_rate.form.amount.label',
-        ]);
+        
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $form = $event->getForm();
+            $data = $event->getData();
+            if (isset($data['amount'])) {
+                $data['amount'] /= 100;
+            }
+            $form->add('amount', null, [
+                'label' => 'behappy_shipping_range_rate.form.amount.label',
+                'data' => $data['amount'],
+            ]);
+        });
+    
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($options): void {
+            $eventData = $event->getData();
+            $eventData['amount'] *= 100;
+            $event->setData($eventData);
+        });
     }
     
     public function configureOptions(OptionsResolver $resolver): void

@@ -3,6 +3,8 @@ behappy_shipping_range_rate:
         shipping_calculator:
             weight_range:
                 label: 'Shipping rate by weight ranges'
+            price_range:
+                label: 'Shipping rate by price ranges'
             ranges:
                 label: 'Weights'
         from_value:

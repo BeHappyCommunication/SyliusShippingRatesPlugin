@@ -2,9 +2,11 @@ behappy_shipping_range_rate:
     form:
         shipping_calculator:
             weight_range:
-                label: 'Grille tarifaire de poids'
+                label: 'Plages de poids'
+            price_range:
+                label: 'Pages de prix'
             ranges:
-                label: 'Poids'
+                label: 'Plages'
         from_value:
             label: 'Min >'
         to_value:
