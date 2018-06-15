@@ -1,0 +1,21 @@
+services:
+    behappy_shipping_range_rate.shipping_calculator.weight_range:
+        class: BeHappy\SyliusShippingRangeRatePlugin\Shipping\Calculator\WeightRangeCalculator
+        public: true
+        tags:
+            - { name: sylius.shipping_calculator, calculator: weight_range, label: behappy_shipping_range_rate.form.shipping_calculator.weight_range.label, form_type: BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\Calculator\WeightRangeConfigurationType }
+
+    behappy_shipping_range_rate.form.type.shipping_calculator.weight_range:
+        class: BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\Calculator\WeightRangeConfigurationType
+        public: true
+        arguments:
+            - '@behappy_shipping_range_rate.form.type.shipping_range'
+        tags:
+            - { name: form.type }
+
+    behappy_shipping_range_rate.form.type.shipping_range:
+        class: BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\RangeType
+        public: true
+        tags:
+            - { name: form.type }
+

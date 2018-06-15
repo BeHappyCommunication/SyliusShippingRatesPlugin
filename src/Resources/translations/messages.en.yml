@@ -1,0 +1,13 @@
+behappy_shipping_range_rate:
+    form:
+        shipping_calculator:
+            weight_range:
+                label: 'Shipping rate by weight ranges'
+            ranges:
+                label: 'Weights'
+        from_value:
+            label: 'Min >'
+        to_value:
+            label: 'Max. ≤'
+        amount:
+            label: 'Amount'
