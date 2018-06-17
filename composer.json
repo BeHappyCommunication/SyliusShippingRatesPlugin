@@ -19,8 +19,7 @@
   ],
   "require": {
     "php": "^7.1",
-    "sylius/sylius": "~1.2.0",
-    "symfony/symfony": "^3.4|^4.1"
+    "sylius/sylius": "^1.1"
   },
   "prefer-stable": true,
   "autoload": {
