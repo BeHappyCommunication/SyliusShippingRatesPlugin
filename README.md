@@ -1,4 +1,4 @@
-#Sylius Shipping Rates Plugin
+# Sylius Shipping Rates Plugin
 A Sylius plugin to add more shipping calculators.
 
 # Installation-procedure
