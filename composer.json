@@ -1,7 +1,7 @@
 {
-  "name": "behappy/shipping-range-rate-plugin",
+  "name": "behappy/shipping-rates-plugin",
   "type": "sylius-plugin",
-  "description": "A Sylius plugin to manage shipping according to ranges of custom values.",
+  "description": "A Sylius plugin to add more shipping calculators.",
   "license": "MIT",
   "authors": [
     {
