@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\Calculator;
+namespace BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\Calculator;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Class RangeConfigurationType
  *
- * @package BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\Calculator
+ * @package BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\Calculator
  */
 final class RangeConfigurationType extends AbstractType
 {
@@ -30,13 +30,12 @@ final class RangeConfigurationType extends AbstractType
     }
     
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('ranges', CollectionType::class, [
-            'label' => 'behappy_shipping_range_rate.form.shipping_calculator.ranges.label',
+            'label' => 'behappy_shipping_rates.form.shipping_calculator.ranges.label',
             'entry_type' => get_class($this->rangeType),
             'entry_options' => [
                 'attr' => [
@@ -50,7 +49,7 @@ final class RangeConfigurationType extends AbstractType
     }
     
     /**
-     * @param OptionsResolver $resolver
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -63,10 +62,10 @@ final class RangeConfigurationType extends AbstractType
     }
     
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getBlockPrefix(): string
     {
-        return 'behappy_shipping_range_rate_calculator_range';
+        return 'behappy_shipping_rates_calculator_range';
     }
 }

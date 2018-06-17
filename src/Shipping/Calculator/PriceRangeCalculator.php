@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace BeHappy\SyliusShippingRangeRatePlugin\Shipping\Calculator;
+namespace BeHappy\SyliusShippingRatesPlugin\Shipping\Calculator;
 
 use Sylius\Component\Core\Exception\MissingChannelConfigurationException;
 use Sylius\Component\Core\Model\ShipmentInterface;
@@ -40,13 +40,13 @@ final class PriceRangeCalculator implements CalculatorInterface
         
         $orderPrice = $order->getItemsTotal() / 100;
         //Look for the apropriate tax amount
-        foreach ($configuration['ranges'] as $range) {
+        foreach ($configuration[$channelCode]['ranges'] as $range) {
             if ($range['fromValue'] < $orderPrice && $orderPrice <= $range['toValue']) {
                 return (int)$range['amount'];
             }
         }
         
-        return (int)$configuration[$channelCode]['amount'];
+        return 0;
     }
     
     /**

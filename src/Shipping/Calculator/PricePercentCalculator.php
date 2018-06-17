@@ -10,12 +10,7 @@ use Sylius\Component\Shipping\Calculator\CalculatorInterface;
 use Sylius\Component\Shipping\Model\ShipmentInterface as BaseShipmentInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * Class WeightRangeCalculator
- *
- * @package BeHappy\SyliusRangeShippingRatePlugin\Shipping\Calculator
- */
-final class WeightRangeCalculator implements CalculatorInterface
+final class PricePercentCalculator implements CalculatorInterface
 {
     /**
      * @param BaseShipmentInterface $subject
@@ -26,7 +21,7 @@ final class WeightRangeCalculator implements CalculatorInterface
     public function calculate(BaseShipmentInterface $subject, array $configuration): int
     {
         Assert::isInstanceOf($subject, ShipmentInterface::class);
-    
+        
         $order = $subject->getOrder();
         $channelCode = $order->getChannel()->getCode();
         
@@ -37,19 +32,11 @@ final class WeightRangeCalculator implements CalculatorInterface
                 $subject->getMethod()->getName()
             ));
         }
-    
-        $orderWeight = 0.0;
-        foreach ($order->getItems() as $orderItem) {
-            $orderWeight += $orderItem->getVariant()->getWeight();
-        }
-        //Look for the apropriate tax amount
-        foreach ($configuration[$channelCode]['ranges'] as $range) {
-            if ($range['fromValue'] < $orderWeight && $orderWeight <= $range['toValue']) {
-                return (int)$range['amount'];
-            }
-        }
         
-        return 0;
+        $orderPrice = $order->getItemsTotal();
+        $percent = (float)$configuration[$channelCode]['amount'];
+        
+        return (int)round($orderPrice * $percent / 100);
     }
     
     /**
@@ -57,6 +44,6 @@ final class WeightRangeCalculator implements CalculatorInterface
      */
     public function getType(): string
     {
-        return 'weight_range';
+        return 'price_percent';
     }
 }

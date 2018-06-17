@@ -1,27 +1,50 @@
 services:
-    behappy_shipping_range_rate.shipping_calculator.weight_range:
-        class: BeHappy\SyliusShippingRangeRatePlugin\Shipping\Calculator\WeightRangeCalculator
+    behappy_shipping_rates.shipping_calculator.weight_range:
+        class: BeHappy\SyliusShippingRatesPlugin\Shipping\Calculator\WeightRangeCalculator
         public: true
         tags:
-            - { name: sylius.shipping_calculator, calculator: weight_range, label: behappy_shipping_range_rate.form.shipping_calculator.weight_range.label, form_type: BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\Calculator\RangeConfigurationType }
+            -
+                name: sylius.shipping_calculator
+                calculator: weight_range
+                label: behappy_shipping_rates.form.shipping_calculator.weight_range.label
+                form_type: BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\Calculator\ChannelBasedRangeConfigurationType
 
-    behappy_shipping_range_rate.shipping_calculator.price_range:
-        class: BeHappy\SyliusShippingRangeRatePlugin\Shipping\Calculator\PriceRangeCalculator
+    behappy_shipping_rates.shipping_calculator.price_range:
+        class: BeHappy\SyliusShippingRatesPlugin\Shipping\Calculator\PriceRangeCalculator
         public: true
         tags:
-            - { name: sylius.shipping_calculator, calculator: price_range, label: behappy_shipping_range_rate.form.shipping_calculator.price_range.label, form_type: BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\Calculator\RangeConfigurationType }
+            -
+                name: sylius.shipping_calculator
+                calculator: price_range
+                label: behappy_shipping_rates.form.shipping_calculator.price_range.label
+                form_type: BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\Calculator\ChannelBasedRangeConfigurationType
 
-    behappy_shipping_range_rate.form.type.shipping_calculator.range:
-        class: BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\Calculator\RangeConfigurationType
+    behappy_shipping_rates.shipping_calculator.price_percent:
+        class: BeHappy\SyliusShippingRatesPlugin\Shipping\Calculator\PricePercentCalculator
+        public: true
+        tags:
+            -
+                name: sylius.shipping_calculator
+                calculator: price_percent
+                label: behappy_shipping_rates.form.shipping_calculator.price_percent.label
+                form_type: BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\Calculator\ChannelBasedPricePercentConfigurationType
+
+    behappy_shipping_rates.form.type.shipping_calculator.range:
+        class: BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\Calculator\RangeConfigurationType
         public: true
         arguments:
-            - '@behappy_shipping_range_rate.form.type.shipping_range'
+            - '@behappy_shipping_rates.form.type.range'
         tags:
             - { name: form.type }
 
-    behappy_shipping_range_rate.form.type.shipping_range:
-        class: BeHappy\SyliusShippingRangeRatePlugin\Form\Type\Shipping\RangeType
+    behappy_shipping_rates.form.type.range:
+        class: BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\RangeType
         public: true
         tags:
             - { name: form.type }
 
+    behappy_shipping_rates.form.type.shipping_calculator.price_percent:
+        class: BeHappy\SyliusShippingRatesPlugin\Form\Type\Shipping\Calculator\ChannelBasedPricePercentConfigurationType
+        public: true
+        tags:
+            - { name: form.type}

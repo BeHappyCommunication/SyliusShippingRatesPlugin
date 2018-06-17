@@ -1,4 +1,4 @@
-behappy_shipping_range_rate:
+behappy_shipping_rates:
     form:
         shipping_calculator:
             weight_range:
@@ -7,6 +7,10 @@ behappy_shipping_range_rate:
                 label: 'Pages de prix'
             ranges:
                 label: 'Plages'
+            price_percent:
+                label: 'Pourcentage du prix de vente (%)'
+            price_percent_configuration:
+                percent: 'Pourcentage'
         from_value:
             label: 'Min >'
         to_value:
