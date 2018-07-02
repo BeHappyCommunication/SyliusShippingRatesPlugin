@@ -4,7 +4,7 @@ behappy_shipping_rates:
             weight_range:
                 label: 'Plages de poids'
             price_range:
-                label: 'Pages de prix'
+                label: 'Plages de prix'
             ranges:
                 label: 'Plages'
             price_percent:
