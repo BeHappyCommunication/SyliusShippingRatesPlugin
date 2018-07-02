@@ -24,7 +24,7 @@
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "BeHappy\\SyliusShippingRangeRatePlugin\\": "src/"
+      "BeHappy\\SyliusShippingRatesPlugin\\": "src/"
     }
   },
   "config": {
