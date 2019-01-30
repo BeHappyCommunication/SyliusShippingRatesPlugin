@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace BeHappy\SyliusShippingRatesPlugin\Shipping\Calculator;
 
 use Sylius\Component\Core\Exception\MissingChannelConfigurationException;
+use Sylius\Component\Core\Model\OrderItem;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Shipping\Calculator\CalculatorInterface;
 use Sylius\Component\Shipping\Model\ShipmentInterface as BaseShipmentInterface;
@@ -39,9 +40,12 @@ final class WeightRangeCalculator implements CalculatorInterface
         }
     
         $orderWeight = 0.0;
+
+        /** @var OrderItem $orderItem */
         foreach ($order->getItems() as $orderItem) {
-            $orderWeight += $orderItem->getVariant()->getWeight();
+            $orderWeight += $orderItem->getVariant()->getWeight() * $orderItem->getQuantity();
         }
+
         //Look for the apropriate tax amount
         foreach ($configuration[$channelCode]['ranges'] as $range) {
             if ($range['fromValue'] < $orderWeight && $orderWeight <= $range['toValue']) {
